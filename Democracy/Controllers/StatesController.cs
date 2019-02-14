@@ -113,7 +113,26 @@ namespace Democracy.Controllers
             }
 
             db.States.Remove(state);
-            db.SaveChanges();
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException != null &&
+                    ex.InnerException.InnerException != null &&
+                    ex.InnerException.InnerException.Message.Contains("REFERENCE"))
+                {
+                    ViewBag.Error = "Can't Delete the record, because has relations";
+                }
+                else
+                {
+                    ViewBag.Error = ex.Message;
+                }
+                return View(state);
+            }
+            
             return RedirectToAction("index");
         }
 

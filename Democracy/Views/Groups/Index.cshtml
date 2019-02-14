@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Groups</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,6 +13,9 @@
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            Number of Members
         </th>
         <th></th>
     </tr>
@@ -23,9 +26,12 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GroupId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GroupId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GroupId })
+            @Html.DisplayFor(modelItem => item.GroupMembers.Count)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.GroupId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.GroupId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.GroupId })
         </td>
     </tr>
 }
