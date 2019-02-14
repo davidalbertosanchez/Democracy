@@ -5,14 +5,13 @@
 }
 
 <h2>Add group to voting</h2>
-<h3>@ViewBag.Error</h3>
-
+    
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Voting</h4>
+        <h4>Group</h4> 
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.VotingId)
